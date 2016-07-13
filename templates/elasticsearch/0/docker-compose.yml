@@ -1,5 +1,5 @@
 elasticsearch-masters:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf:v1
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v2
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-master,elasticsearch-datavolume-masters
@@ -14,7 +14,6 @@ elasticsearch-datavolume-masters:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
     - /opt/rancher/bin
-    - /data/confd
   entrypoint: /bin/true
   image: elasticsearch:2.3.4
 elasticsearch-base-master:
@@ -32,7 +31,7 @@ elasticsearch-base-master:
 
 
 elasticsearch-datanodes:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf:v1
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v2
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-datanode,elasticsearch-datavolume-datanode
@@ -50,7 +49,6 @@ elasticsearch-datavolume-datanode:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
     - /opt/rancher/bin
-    - /data/confd
   entrypoint: /bin/true
   image: elasticsearch:2.3.4
 elasticsearch-base-datanode:
@@ -70,7 +68,7 @@ elasticsearch-base-datanode:
 
 
 elasticsearch-clients:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf:v1
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v2
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-clients,elasticsearch-datavolume-clients
@@ -87,7 +85,6 @@ elasticsearch-datavolume-clients:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
     - /opt/rancher/bin
-    - /data/confd
   entrypoint: /bin/true
   image: elasticsearch:2.3.4
 elasticsearch-base-clients:
