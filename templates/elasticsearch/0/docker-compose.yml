@@ -29,7 +29,12 @@ elasticsearch-base-master:
     - elasticsearch-datavolume-masters
   entrypoint:
     - /opt/rancher/bin/run.sh
-
+  ulimits:
+    memlock:
+      soft: -1
+      hard: -1
+  cap_add:
+    - IPC_LOCK
 
 elasticsearch-datanodes:
   image: registry.smartprocure.us/rancher/elasticsearch-conf:v2
@@ -67,6 +72,12 @@ elasticsearch-base-datanode:
   volumes_from:
     - elasticsearch-datavolume-datanode
   net: "container:elasticsearch-datanodes"
+  ulimits:
+    memlock:
+      soft: -1
+      hard: -1
+  cap_add:
+    - IPC_LOCK
 
 
 elasticsearch-clients:
@@ -102,6 +113,12 @@ elasticsearch-base-clients:
   net: "container:elasticsearch-clients"
   entrypoint:
     - /opt/rancher/bin/run.sh
+  ulimits:
+    memlock:
+      soft: -1
+      hard: -1
+  cap_add:
+    - IPC_LOCK
 
 
 kopf:
