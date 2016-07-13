@@ -30,9 +30,9 @@ elasticsearch-base-master:
   entrypoint:
     - /opt/rancher/bin/run.sh
   ulimits:
-    memlock:
-      soft: -1
-      hard: -1
+    memlock: -1
+    nproc: 65535555
+    nofile: 655355
   cap_add:
     - IPC_LOCK
 
@@ -73,9 +73,9 @@ elasticsearch-base-datanode:
     - elasticsearch-datavolume-datanode
   net: "container:elasticsearch-datanodes"
   ulimits:
-    memlock:
-      soft: -1
-      hard: -1
+    memlock: -1
+    nproc: 65535555
+    nofile: 655355
   cap_add:
     - IPC_LOCK
 
@@ -114,9 +114,9 @@ elasticsearch-base-clients:
   entrypoint:
     - /opt/rancher/bin/run.sh
   ulimits:
-    memlock:
-      soft: -1
-      hard: -1
+    memlock: -1
+    nproc: 65535555
+    nofile: 655355
   cap_add:
     - IPC_LOCK
 
