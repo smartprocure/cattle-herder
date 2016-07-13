@@ -1,5 +1,5 @@
 elasticsearch-masters:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf:v2
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v3
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-master,elasticsearch-datavolume-masters
@@ -37,7 +37,7 @@ elasticsearch-base-master:
     - IPC_LOCK
 
 elasticsearch-datanodes:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf:v2
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v3
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-datanode,elasticsearch-datavolume-datanode
@@ -81,7 +81,7 @@ elasticsearch-base-datanode:
 
 
 elasticsearch-clients:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf:v2
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v3
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-clients,elasticsearch-datavolume-clients
