@@ -3,5 +3,4 @@ src = "plugins.tmpl"
 dest = "/data/confd/plugins.txt"
 keys = [
   "/self/service",
-  "/containers",
 ]
