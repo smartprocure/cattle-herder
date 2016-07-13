@@ -14,6 +14,7 @@ elasticsearch-datavolume-masters:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
     - /opt/rancher/bin
+    - /data/confd
   entrypoint: /bin/true
   image: elasticsearch:2.3.4
 elasticsearch-base-master:
@@ -21,6 +22,8 @@ elasticsearch-base-master:
     elasticsearch.master.config.version: '0'
     io.rancher.container.hostname_override: container_name
   image: elasticsearch:2.3.4
+  environment:
+    PLUGIN_TXT: /data/confd/plugins.txt
   net: "container:elasticsearch-masters"
   volumes_from:
     - elasticsearch-datavolume-masters
@@ -47,6 +50,7 @@ elasticsearch-datavolume-datanode:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
     - /opt/rancher/bin
+    - /data/confd
   entrypoint: /bin/true
   image: elasticsearch:2.3.4
 elasticsearch-base-datanode:
@@ -54,6 +58,8 @@ elasticsearch-base-datanode:
     elasticsearch.datanode.config.version: '0'
     io.rancher.container.hostname_override: container_name
   image: elasticsearch:2.3.4
+  environment:
+    PLUGIN_TXT: /data/confd/plugins.txt
   links:
     - elasticsearch-masters:es-masters
   entrypoint:
@@ -81,6 +87,7 @@ elasticsearch-datavolume-clients:
     - /usr/share/elasticsearch/data
     - /usr/share/elasticsearch/config
     - /opt/rancher/bin
+    - /data/confd
   entrypoint: /bin/true
   image: elasticsearch:2.3.4
 elasticsearch-base-clients:
@@ -88,6 +95,8 @@ elasticsearch-base-clients:
     elasticsearch.client.config.version: '0'
     io.rancher.container.hostname_override: container_name
   image: elasticsearch:2.3.4
+  environment:
+    PLUGIN_TXT: /data/confd/plugins.txt
   volumes_from:
     - elasticsearch-datavolume-clients
   net: "container:elasticsearch-clients"
