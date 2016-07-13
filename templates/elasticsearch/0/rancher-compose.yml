@@ -19,9 +19,9 @@ elasticsearch-masters:
   metadata:
     elasticsearch:
       plugins:
-        - delete-by-query
-        - mobz/elasticsearch-head
-        - cloud-aws
+        deleteByQuery: "delete-by-query"
+        head: "mobz/elasticsearch-head"
+        aws: "cloud-aws"
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"
@@ -35,9 +35,9 @@ elasticsearch-datanodes:
   metadata:
     elasticsearch:
       plugins:
-        - delete-by-query
-        - mobz/elasticsearch-head
-        - cloud-aws
+        deleteByQuery: "delete-by-query"
+        head: "mobz/elasticsearch-head"
+        aws: "cloud-aws"
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"
@@ -52,9 +52,9 @@ elasticsearch-clients:
   metadata:
     elasticsearch:
       plugins:
-        - delete-by-query
-        - mobz/elasticsearch-head
-        - cloud-aws
+        deleteByQuery: "delete-by-query"
+        head: "mobz/elasticsearch-head"
+        aws: "cloud-aws"
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"
