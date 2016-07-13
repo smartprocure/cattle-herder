@@ -15,13 +15,15 @@
       type: "int"
       default: 80
       required: true
+    - variable: "plugins"
+      label: "ElasticSearch Plugins"
+      description: "Comma separated list of plugins to install in ElasticSearch"
+      type: "string"
+      default: "mobz/elasticsearch-head,cloud-aws,delete-by-query"
+      required: true
 elasticsearch-masters:
   metadata:
     elasticsearch:
-      plugins:
-        deleteByQuery: "delete-by-query"
-        head: "mobz/elasticsearch-head"
-        aws: "cloud-aws"
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"
@@ -34,10 +36,6 @@ elasticsearch-masters:
 elasticsearch-datanodes:
   metadata:
     elasticsearch:
-      plugins:
-        deleteByQuery: "delete-by-query"
-        head: "mobz/elasticsearch-head"
-        aws: "cloud-aws"
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"
@@ -51,10 +49,6 @@ elasticsearch-datanodes:
 elasticsearch-clients:
   metadata:
     elasticsearch:
-      plugins:
-        deleteByQuery: "delete-by-query"
-        head: "mobz/elasticsearch-head"
-        aws: "cloud-aws"
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"

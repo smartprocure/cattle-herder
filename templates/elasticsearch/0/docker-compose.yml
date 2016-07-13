@@ -1,5 +1,5 @@
 elasticsearch-masters:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v1
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-master,elasticsearch-datavolume-masters
@@ -23,7 +23,7 @@ elasticsearch-base-master:
     io.rancher.container.hostname_override: container_name
   image: elasticsearch:2.3.4
   environment:
-    PLUGIN_TXT: /data/confd/plugins.txt
+    PLUGIN_TXT: ${plugins}
   net: "container:elasticsearch-masters"
   volumes_from:
     - elasticsearch-datavolume-masters
@@ -32,7 +32,7 @@ elasticsearch-base-master:
 
 
 elasticsearch-datanodes:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v1
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-datanode,elasticsearch-datavolume-datanode
@@ -59,7 +59,7 @@ elasticsearch-base-datanode:
     io.rancher.container.hostname_override: container_name
   image: elasticsearch:2.3.4
   environment:
-    PLUGIN_TXT: /data/confd/plugins.txt
+    PLUGIN_TXT: ${plugins}
   links:
     - elasticsearch-masters:es-masters
   entrypoint:
@@ -70,7 +70,7 @@ elasticsearch-base-datanode:
 
 
 elasticsearch-clients:
-  image: registry.smartprocure.us/rancher/elasticsearch-conf
+  image: registry.smartprocure.us/rancher/elasticsearch-conf:v1
   labels:
     io.rancher.container.hostname_override: container_name
     io.rancher.sidekicks: elasticsearch-base-clients,elasticsearch-datavolume-clients
@@ -96,7 +96,7 @@ elasticsearch-base-clients:
     io.rancher.container.hostname_override: container_name
   image: elasticsearch:2.3.4
   environment:
-    PLUGIN_TXT: /data/confd/plugins.txt
+    PLUGIN_TXT: ${plugins}
   volumes_from:
     - elasticsearch-datavolume-clients
   net: "container:elasticsearch-clients"
