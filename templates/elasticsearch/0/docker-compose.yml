@@ -23,6 +23,7 @@ elasticsearch-base-master:
   image: elasticsearch:2.3.4
   environment:
     PLUGIN_TXT: ${plugins}
+    ES_HEAP_SIZE: ${master_heap_size}
   net: "container:elasticsearch-masters"
   volumes_from:
     - elasticsearch-datavolume-masters
@@ -58,6 +59,7 @@ elasticsearch-base-datanode:
   image: elasticsearch:2.3.4
   environment:
     PLUGIN_TXT: ${plugins}
+    ES_HEAP_SIZE: ${data_heap_size}
   links:
     - elasticsearch-masters:es-masters
   entrypoint:
@@ -94,6 +96,7 @@ elasticsearch-base-clients:
   image: elasticsearch:2.3.4
   environment:
     PLUGIN_TXT: ${plugins}
+    ES_HEAP_SIZE: ${client_heap_size}
   volumes_from:
     - elasticsearch-datavolume-clients
   net: "container:elasticsearch-clients"

@@ -21,6 +21,24 @@
       type: "string"
       default: "mobz/elasticsearch-head,cloud-aws,delete-by-query"
       required: true
+    - variable: "master_heap_size"
+      label: "Master Node Heap Size"
+      description: "The amount of heap to make available to the master nodes."
+      type: "string"
+      default: "1G"
+      required: true
+    - variable: "data_heap_size"
+      label: "Data Node Heap Size"
+      description: "The amount of heap to make available to the data nodes."
+      type: "string"
+      default: "30G"
+      required: true
+    - variable: "client_heap_size"
+      label: "Client Heap Size"
+      description: "The amount of heap to make available to the client nodes."
+      type: "string"
+      default: "1G"
+      required: true
 elasticsearch-masters:
   metadata:
     elasticsearch:
