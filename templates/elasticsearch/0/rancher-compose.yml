@@ -18,15 +18,26 @@
 elasticsearch-masters:
   metadata:
     elasticsearch:
+      plugins:
+        - delete-by-query
+        - mobz/elasticsearch-head
+        - cloud-aws
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"
         node.data: "false"
         node.master: "true"
         network.host: "_site_"
+        index.query.bool.max_clause_count: "4096"
+        script.inline: "on"
+        script.indexed: "on"
 elasticsearch-datanodes:
   metadata:
     elasticsearch:
+      plugins:
+        - delete-by-query
+        - mobz/elasticsearch-head
+        - cloud-aws
       yml:
         cluster.name: "${cluster_name}"
         node.name: "$${HOSTNAME}"
@@ -34,12 +45,22 @@ elasticsearch-datanodes:
         node.master: "false"
         http.enabled: "false"
         network.host: "_site_"
+        index.query.bool.max_clause_count: "4096"
+        script.inline: "on"
+        script.indexed: "on"
 elasticsearch-clients:
   metadata:
     elasticsearch:
+      plugins:
+        - delete-by-query
+        - mobz/elasticsearch-head
+        - cloud-aws
       yml:
-       cluster.name: "${cluster_name}"
-       node.name: "$${HOSTNAME}"
-       node.data: "false"
-       node.master: "false"
-       network.host: "_site_"
+        cluster.name: "${cluster_name}"
+        node.name: "$${HOSTNAME}"
+        node.data: "false"
+        node.master: "false"
+        network.host: "_site_"
+        index.query.bool.max_clause_count: "4096"
+        script.inline: "on"
+        script.indexed: "on"
